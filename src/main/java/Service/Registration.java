@@ -8,51 +8,37 @@ package Service;
  *
  ************************************************************/
 
-	import java.util.Scanner;
-	import java.util.regex.Pattern;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-	public class Registration {
-		
-		/**
-		 * @param firstName
-		 * @return True if matches regex pattern orterwise false
-		 */
-		public  boolean getFirstName(String firstName) {
-			return Pattern.matches("[A-Z]+[a-z]{2,}", firstName);
-		}
-		
-		/**
-		 * @param lastName
-		 * @return True if matches regex pattern orterwise false
-		 */
-		public boolean getLastName(String lastName) {
-			return Pattern.matches("[A-Z]+[a-z]{2,}", lastName);
-		}
-		
-		/**
-		 * @param phone
-		 * @return True if matches regex pattern orterwise false
-		 */
-		public boolean getPhoneNumber(String phone) {
-			return Pattern.matches("^[1-9][0-9]\s[1-9]{10}$", phone);
-		}
-		
-		/**
-		 * @param email
-		 * @return True if matches regex pattern otherwise false
-		 */
-		public boolean getEmail(String email) {
-			return Pattern.matches("^[a-z0-9.+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$", email);	
-		}
-		
-		/**
-		 * @param password
-		 * @return True if matches regex pattern orterwise false
-		 */
-		public boolean getPassword(String password) {
-			return Pattern.matches("^(?=.*[A-Z])(?=.*\\d)(?=.*[a-zA-z0-9!@#$%^&*()_+=-{};':<>,./?~`]).{8,}$", password);	
-		}
+public class Registration {
+	private static String EmailId = "^[a-zA-Z]{1,}?[A-Za-z0-9]{0,1}+([-.+]{0,1}+[a-zA-Z0-9]{1,}){0,1}"
+			+ "+@+[a-zA-Z0-9]{1,}?([-._]{0,1}+[a-zA-Z0-9]{2,}){0,1}?([-._]{0,1}" + "+[a-zA-Z]{2,}){0,1}";
 
+	// Function for Checking the FirstName
+	public boolean checkFirstname(String fName) {
+		return (fName.matches("^[A-Z][a-z]{2,}"));
 	}
 
+	// Function for Checking the LastName
+	public boolean checkLastName(String Lname) {
+		return (Lname.matches("^[A-Z][a-z]{2,}"));
+	}
 
+	// Function for Checking the EmailId
+	public boolean checkEmailId(String EmailId) {
+		return (EmailId.matches(EmailId));
+	}
+
+	// Function for Checking the MobileNo
+	public boolean checkMobileNo(String MobileNo) {
+		return (MobileNo.matches("^[0-9]{1,2}[ ][0-9]{10}$"));
+	}
+
+	// Function for Checking the PassWord
+	public boolean checkPassWord(String Password) {
+		return (Password.matches("^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[#@$^+=&%])" + "(?=\\S+$).{8,}$"));
+
+	}
+}

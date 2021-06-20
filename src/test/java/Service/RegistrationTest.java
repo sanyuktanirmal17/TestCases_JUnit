@@ -7,64 +7,90 @@ package Service;
  * @since 20-06-2021
  *
  ************************************************************/
-
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
+
+import Service.EmailParameterizedTest;
 
 public class RegistrationTest {
-	Registration registration = null;
 
-	@Before
-	public void email() {
-		registration = new Registration();
+	// Test Case for FirstName return true
+	@Test
+	public void checkingFirstname() {
+		Registration validator = new Registration();
+		boolean isFirstName = validator.checkFirstname("Sanyukta");
+		Assert.assertTrue(isFirstName);
 	}
 
+	// Test Case for FirstName return False
 	@Test
-	public void givenFirstName_ShouldReturnTrue() {
-		boolean result = registration.getFirstName("Sanyukta");
-		Assert.assertEquals(true, result);
+	public void checkingFirstNameInvalidReturnFalse() {
+		Registration validator = new Registration();
+		boolean isFirstName = validator.checkFirstname("riya");
+		Assert.assertFalse(isFirstName);
 	}
 
+	// Test Case for LastName return True
 	@Test
-	public void givenFirstName_ShouldReturnFalse() {
-		boolean result = registration.getFirstName("sanyu");
-		Assert.assertEquals(false, result);
+	public void checkingLastName() {
+		Registration user = new Registration();
+		boolean isLastName = user.checkLastName("Jambhulkar");
+		Assert.assertTrue(isLastName);
 	}
 
+	// Test Case for LastName return False
 	@Test
-	public void givenLastName_ShouldReturnTrue() {
-		boolean result = registration.getLastName("Nirmal");
-		Assert.assertEquals(true, result);
+	public void checkingLastNameInvalidMustReturnFalse() {
+		Registration user = new Registration();
+		boolean isLastName = user.checkLastName("Nirmal");
+		Assert.assertFalse(isLastName);
 	}
 
+	// Test Case for EmailId return True
 	@Test
-	public void givenLasttName_ShouldReturnFalse() {
-		boolean result = registration.getLastName("nirmal873");
-		Assert.assertEquals(false, result);
+	public void checkingEmailId() {
+		Registration user = new Registration();
+		boolean isEmailId = user.checkEmailId("sanyuktanirmal17@gmail.com");
+		Assert.assertTrue(isEmailId);
 	}
 
+	// Test Case for EmailId return False
 	@Test
-	public void givenPhoneNumber_ShouldReturnTrue() {
-		boolean result = registration.getPhoneNumber("91 9762014911");
-		Assert.assertEquals(true, result);
+	public void checkingEmailIdInvalidMustReturnFalse() {
+		Registration user = new Registration();
+		boolean isEmailId = user.checkEmailId(".sanyukta@111");
+		Assert.assertFalse(isEmailId);
 	}
 
+	// Test Case for MobileNo return True
 	@Test
-	public void givenPhoneNumber_ShouldReturnFalse() {
-		boolean result = registration.getPhoneNumber("9762");
-		Assert.assertEquals(false, result);
+	public void checkingMobileNo() {
+		Registration user = new Registration();
+		boolean isMobileNo = user.checkMobileNo("91 9138124143");
+		Assert.assertTrue(isMobileNo);
 	}
 
+	// Test Case for MobileNo return False
 	@Test
-	public void givenPassword_WhenProper_ShouldReturnTrue() {
-		boolean result = registration.getPassword("SaYu231@");
-		Assert.assertEquals(true, result);
+	public void checkingMobileNoInvalidMustReturnFalse() {
+		Registration user = new Registration();
+		boolean isMobileNo = user.checkMobileNo("656965241");
+		Assert.assertFalse(isMobileNo);
 	}
 
+	// Test Case for Password return True
 	@Test
-	public void givenPassword_ShouldReturnFalse() {
-		boolean result = registration.getPassword("123");
-		Assert.assertEquals(false, result);
+	public void checkingPassWord_OneSpecialCharacter_ReturnTrue() {
+		Registration user = new Registration();
+		boolean isPassWord = user.checkPassWord("sanyuktanirmal17");
+		Assert.assertTrue(isPassWord);
+	}
+
+	// Test Case for Password return False
+	@Test
+	public void checkingPassWord_WhenNoOneSpecialCharacter_ReturnFalse() {
+		Registration user = new Registration();
+		boolean isPassWord = user.checkPassWord("Riya1");
+		Assert.assertFalse(isPassWord);
 	}
 }
